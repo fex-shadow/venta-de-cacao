@@ -81,8 +81,17 @@
       text-decoration: none; 
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.8rem;
       cursor: pointer;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover .logo-img {
+      transform: scale(1.1) rotate(5deg);
     }
     .nav-buttons {
       display: flex;
@@ -284,6 +293,33 @@
     }
     .catalog-header h2 { font-size: 1.8rem; color: var(--primary); }
     .catalog-header p { color: var(--text-secondary); }
+
+    /* Área con imagen de fondo personalizada */
+    .content-area-bg {
+      position: relative;
+      min-height: calc(100vh - 300px);
+    }
+
+    .content-area-bg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('cacao.jfif');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0.15;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .content-area-bg > * {
+      position: relative;
+      z-index: 1;
+    }
 
     /* Excel-style Table */
     .spreadsheet-container {
@@ -493,7 +529,7 @@
     .modal-content {
       background: var(--card-bg);
       border-radius: 1rem;
-      max-width: 500px;
+      max-width: 600px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
@@ -567,6 +603,263 @@
     }
     .btn-submit:hover { transform: scale(1.02); }
 
+    .btn-secondary {
+      background: var(--bg);
+      border: 2px solid var(--border);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.4rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .btn-danger:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .category-manager {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      background: var(--bg-secondary);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .category-manager h4 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .category-manager-info {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      background: rgba(245, 158, 11, 0.1);
+      border-left: 3px solid var(--accent);
+      border-radius: 0.3rem;
+    }
+
+    .existing-categories {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      max-height: 250px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .category-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: all 0.2s;
+    }
+
+    .category-item:hover {
+      border-color: var(--primary);
+      transform: translateX(3px);
+    }
+
+    .category-item-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .category-item-icon {
+      font-size: 1.5rem;
+    }
+
+    .category-item-details {
+      flex: 1;
+    }
+
+    .category-item-name {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .category-item-count {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .category-item-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-delete-category {
+      background: transparent;
+      border: 2px solid var(--danger);
+      color: var(--danger);
+      padding: 0.4rem 0.8rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-delete-category:hover {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-delete-category.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      border-color: var(--text-secondary);
+      color: var(--text-secondary);
+    }
+
+    .btn-delete-category.disabled:hover {
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .new-category-input {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--bg);
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+      animation: slideDown 0.3s ease;
+    }
+
+    .new-category-input.show {
+      display: block;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .input-group input, .input-group select {
+      flex: 1;
+    }
+
+    /* NUEVOS ESTILOS PARA IMAGEN DE CATEGORÍA */
+    .category-image-upload {
+      margin-top: 0.8rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border: 2px dashed var(--border);
+      border-radius: 0.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .category-image-upload:hover {
+      border-color: var(--accent);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .category-image-upload label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .category-image-upload input[type="file"] {
+      width: 100%;
+      padding: 0.5rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 0.4rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .category-image-preview {
+      margin-top: 0.8rem;
+      display: none;
+      text-align: center;
+    }
+
+    .category-image-preview.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .category-image-preview img {
+      max-width: 100%;
+      max-height: 150px;
+      border-radius: 0.5rem;
+      border: 2px solid var(--accent);
+      box-shadow: var(--shadow);
+    }
+
+    .category-image-preview .remove-image {
+      margin-top: 0.5rem;
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 0.3rem 0.8rem;
+      border-radius: 0.3rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .category-image-preview .remove-image:hover {
+      opacity: 0.9;
+      transform: scale(1.05);
+    }
+
+    .category-item-thumb {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 0.3rem;
+      border: 1px solid var(--border);
+    }
+
     footer {
       background: var(--card-bg);
       color: var(--text-secondary);
@@ -605,6 +898,16 @@
       .toolbar-group {
         justify-content: center;
       }
+      .category-item {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .category-item-actions {
+        justify-content: flex-end;
+      }
+      .logo-img {
+        height: 35px;
+      }
     }
   </style>
 </head>
@@ -612,7 +915,10 @@
 
   <header>
     <div class="nav-container">
-      <a href="#" class="logo" onclick="showSection('home')">📦 Gestor de Inventario</a>
+      <a href="#" class="logo" onclick="showSection('home')">
+        <img src="logo.png" alt="Production Record Logo" class="logo-img" onerror="this.src='https://placehold.co/120x40/e7b481/1e293b?text=LOGO'">
+        <span>production record</span>
+      </a>
       <div class="nav-buttons">
         <button class="btn-primary" onclick="openAddProductModal()">
           ➕ Nuevo Producto
@@ -638,220 +944,13 @@
   </section>
 
   <div id="homeSection" class="section active">
-    <div class="categories-grid">
-      <div class="category-card" onclick="showSection('cacao-criollo')">
-        <img src="https://placehold.co/600x400/78350f/ffffff?text=🍫+Cacao+Criollo" alt="Cacao Criollo">
-        <div class="category-card-content">
-          <div class="category-icon">🍫</div>
-          <h3>Cacao Criollo</h3>
-          <p>El cacao más exquisito y aromático. Producido en las montañas de América.</p>
-          <span class="category-count" id="count-cacao-criollo">0 productos</span>
-        </div>
-      </div>
-
-      <div class="category-card" onclick="showSection('cacao-forastero')">
-        <img src="https://placehold.co/600x400/92400e/ffffff?text=🍫+Cacao+Forastero" alt="Cacao Forastero">
-        <div class="category-card-content">
-          <div class="category-icon">🍫</div>
-          <h3>Cacao Forastero</h3>
-          <p>El cacao más abundante y versátil. Ideal para productos derivados.</p>
-          <span class="category-count" id="count-cacao-forastero">0 productos</span>
-        </div>
-      </div>
-
-      <div class="category-card" onclick="showSection('cacao-trinitario')">
-        <img src="https://placehold.co/600x400/451a03/ffffff?text=🍫+Cacao+Trinitario" alt="Cacao Trinitario">
-        <div class="category-card-content">
-          <div class="category-icon">🍫</div>
-          <h3>Cacao Trinitario</h3>
-          <p>Una combinación única de características de los cacaos Criollo y Forastero.</p>
-          <span class="category-count" id="count-cacao-trinitario">0 productos</span>
-        </div>
-      </div>
-
-      <div class="category-card" onclick="showSection('combos')" style="border-color: var(--accent);">
-        <img src="https://placehold.co/600x400/f59e0b/ffffff?text=🎁+Combos" alt="Combos">
-        <div class="category-card-content">
-          <div class="category-icon">🎁</div>
-          <h3>Combos Especiales</h3>
-          <p>Packs familiares con descuento. La mejor relación calidad-precio.</p>
-          <span class="category-count" id="count-combos" style="background: var(--accent);">0 productos</span>
-        </div>
-      </div>
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Las categorías se generan dinámicamente -->
     </div>
   </div>
 
-  <div id="cacao-criolloSection" class="section">
-    <div class="category-header">
-      <button class="back-btn" onclick="showSection('home')">
-        ← Volver al Inicio
-      </button>
-      <h2 class="category-title">🍫 Cacao Criollo</h2>
-    </div>
-    <div class="container">
-      <div class="catalog-header">
-        <h2>Cacao Criollo Premium</h2>
-        <p>El cacao más exquisito y aromático</p>
-      </div>
-      <div class="spreadsheet-container">
-        <div class="table-toolbar">
-          <div class="toolbar-group">
-            <strong>📋 Inventario</strong>
-            <span style="color: var(--text-secondary);">|</span>
-            <span id="total-cacao-criollo" style="color: var(--primary);">0 productos</span>
-          </div>
-          <div class="toolbar-group">
-            <button class="btn-add-row" onclick="addRow('cacao-criollo')">+ Agregar Fila</button>
-            <button class="btn-add-column" onclick="addColumn('cacao-criollo')">+ Agregar Columna</button>
-          </div>
-        </div>
-        <table class="spreadsheet-table" id="table-cacao-criollo">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Producto</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Unidad</th>
-              <th>Stock</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="grid-cacao-criollo"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div id="cacao-forasteroSection" class="section">
-    <div class="category-header">
-      <button class="back-btn" onclick="showSection('home')">
-        ← Volver al Inicio
-      </button>
-      <h2 class="category-title">🍫 Cacao Forastero</h2>
-    </div>
-    <div class="container">
-      <div class="catalog-header">
-        <h2>Cacao Forastero</h2>
-        <p>El cacao más abundante y versátil</p>
-      </div>
-      <div class="spreadsheet-container">
-        <div class="table-toolbar">
-          <div class="toolbar-group">
-            <strong>📋 Inventario</strong>
-            <span style="color: var(--text-secondary);">|</span>
-            <span id="total-cacao-forastero" style="color: var(--primary);">0 productos</span>
-          </div>
-          <div class="toolbar-group">
-            <button class="btn-add-row" onclick="addRow('cacao-forastero')">+ Agregar Fila</button>
-            <button class="btn-add-column" onclick="addColumn('cacao-forastero')">+ Agregar Columna</button>
-          </div>
-        </div>
-        <table class="spreadsheet-table" id="table-cacao-forastero">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Producto</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Unidad</th>
-              <th>Stock</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="grid-cacao-forastero"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div id="cacao-trinitarioSection" class="section">
-    <div class="category-header">
-      <button class="back-btn" onclick="showSection('home')">
-        ← Volver al Inicio
-      </button>
-      <h2 class="category-title">🍫 Cacao Trinitario</h2>
-    </div>
-    <div class="container">
-      <div class="catalog-header">
-        <h2>Cacao Trinitario</h2>
-        <p>Combinación única de Criollo y Forastero</p>
-      </div>
-      <div class="spreadsheet-container">
-        <div class="table-toolbar">
-          <div class="toolbar-group">
-            <strong>📋 Inventario</strong>
-            <span style="color: var(--text-secondary);">|</span>
-            <span id="total-cacao-trinitario" style="color: var(--primary);">0 productos</span>
-          </div>
-          <div class="toolbar-group">
-            <button class="btn-add-row" onclick="addRow('cacao-trinitario')">+ Agregar Fila</button>
-            <button class="btn-add-column" onclick="addColumn('cacao-trinitario')">+ Agregar Columna</button>
-          </div>
-        </div>
-        <table class="spreadsheet-table" id="table-cacao-trinitario">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Producto</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Unidad</th>
-              <th>Stock</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="grid-cacao-trinitario"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div id="combosSection" class="section">
-    <div class="category-header">
-      <button class="back-btn" onclick="showSection('home')">
-        ← Volver al Inicio
-      </button>
-      <h2 class="category-title">🎁 Combos Especiales</h2>
-    </div>
-    <div class="container">
-      <div class="catalog-header">
-        <h2>Packs y Ofertas</h2>
-        <p>Ahorra comprando nuestros combos</p>
-      </div>
-      <div class="spreadsheet-container">
-        <div class="table-toolbar">
-          <div class="toolbar-group">
-            <strong>📋 Inventario</strong>
-            <span style="color: var(--text-secondary);">|</span>
-            <span id="total-combos" style="color: var(--primary);">0 productos</span>
-          </div>
-          <div class="toolbar-group">
-            <button class="btn-add-row" onclick="addRow('combos')">+ Agregar Fila</button>
-            <button class="btn-add-column" onclick="addColumn('combos')">+ Agregar Columna</button>
-          </div>
-        </div>
-        <table class="spreadsheet-table" id="table-combos">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Producto</th>
-              <th>Categoría</th>
-              <th>Precio</th>
-              <th>Unidad</th>
-              <th>Stock</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="grid-combos"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <!-- Las secciones de categorías se generan dinámicamente -->
+  <div id="dynamicSections"></div>
 
   <div class="modal" id="addProductModal">
     <div class="modal-content">
@@ -866,12 +965,40 @@
 
           <div class="form-group">
             <label class="required">Categoría:</label>
-            <select id="addCategory" class="cell-editable" required>
-              <option value="🍫 Cacao Criollo">🍫 Cacao Criollo</option>
-              <option value="🍫 Cacao Forastero">🍫 Cacao Forastero</option>
-              <option value="🍫 Cacao Trinitario">🍫 Cacao Trinitario</option>
-              <option value="🎁 Combos">🎁 Combos</option>
+            <select id="addCategory" class="cell-editable" required onchange="handleCategoryChange()">
+              <!-- Las opciones se generan dinámicamente -->
             </select>
+            
+            <!-- Input para nueva categoría -->
+            <div id="newCategoryInput" class="new-category-input">
+              <label>Nombre de la Nueva Categoría:</label>
+              <div class="input-group">
+                <input type="text" id="newCategoryName" class="cell-editable" placeholder="Ej: Cacao Nacional">
+                <select id="newCategoryIcon" class="cell-editable" style="width: 80px;">
+                  <option value="🍫">🍫</option>
+                  <option value="🌰">🌰</option>
+                  <option value="🥜">🥜</option>
+                  <option value="📦">📦</option>
+                  <option value="🎁">🎁</option>
+                  <option value="🏷️">🏷️</option>
+                  <option value="⭐">⭐</option>
+                  <option value="🔥">🔥</option>
+                </select>
+              </div>
+
+              <!-- NUEVA SECCIÓN: Imagen de la categoría -->
+              <div class="category-image-upload">
+                <label for="newCategoryImage">🖼️ Imagen de la Categoría (opcional):</label>
+                <input type="file" id="newCategoryImage" accept="image/*" onchange="previewCategoryImage(event)">
+                <div id="categoryImagePreview" class="category-image-preview">
+                  <img id="previewImg" src="" alt="Vista previa">
+                  <br>
+                  <button type="button" class="remove-image" onclick="removeCategoryImage()">🗑️ Quitar imagen</button>
+                </div>
+              </div>
+
+              <button type="button" class="btn-secondary" onclick="addNewCategory()" style="width: 100%; margin-top: 0.8rem;">+ Agregar Categoría</button>
+            </div>
           </div>
 
           <div class="form-group">
@@ -904,6 +1031,20 @@
             🚀 Crear Producto
           </button>
         </form>
+
+        <!-- Gestor de Categorías con opción de eliminar -->
+        <div class="category-manager">
+          <h4>📋 Administrar Categorías</h4>
+          <div class="category-manager-info">
+            💡 Haz clic en 🗑️ para eliminar una categoría. No se pueden eliminar categorías con productos.
+          </div>
+          <div class="existing-categories" id="existingCategories">
+            <!-- Se genera dinámicamente -->
+          </div>
+          <button class="btn-secondary" onclick="showNewCategoryInput()" style="width: 100%;">
+            ➕ Agregar Nueva Categoría
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -915,27 +1056,31 @@
     </p>
   </footer>
 
-  <script type="module">
-    // Importamos los SDKs necesarios de Firebase desde un CDN oficial (sin necesidad de instalar node_modules)
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getFirestore, collection, onSnapshot, doc, setDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  <script>
+    // Categorías disponibles
+    let categories = [
+      { id: 'cacao-criollo', name: '🍫 Cacao Criollo', icon: '🍫', desc: 'El cacao más exquisito y aromático. Producido en las montañas de América.', image: 'cacao criollo.jfif' },
+      { id: 'cacao-forastero', name: '🍫 Cacao Forastero', icon: '🍫', desc: 'El cacao más abundante y versátil. Ideal para productos derivados.', image: 'cacao forastero.jfif' },
+      { id: 'cacao-trinitario', name: '🍫 Cacao Trinitario', icon: '🍫', desc: 'Una combinación única de características de los cacaos Criollo y Forastero.', image: 'cacao trinitario.jfif' },
+      { id: 'combos', name: '🎁 Combos Especiales', icon: '🎁', desc: 'Packs familiares con descuento. La mejor relación calidad-precio.', image: 'combos.jfif' }
+    ];
 
-    // Reemplaza este objeto con tus credenciales reales obtenidas en la consola de Firebase
-    const firebaseConfig = {
-      apiKey: "TU_API_KEY",
-      authDomain: "TU_PROJECT_ID.firebaseapp.com",
-      projectId: "TU_PROJECT_ID",
-      storageBucket: "TU_PROJECT_ID.appspot.com",
-      messagingSenderId: "TU_MESSAGING_SENDER_ID",
-      appId: "TU_APP_ID"
-    };
+    // Cargar categorías desde localStorage
+    if (localStorage.getItem('inventoryCategories')) {
+      categories = JSON.parse(localStorage.getItem('inventoryCategories'));
+      // Asegurar que todas las categorías tengan la propiedad image
+      categories.forEach(cat => {
+        if (!cat.hasOwnProperty('image')) {
+          cat.image = '';
+        }
+      });
+    }
 
-    // Inicializar Firebase y la base de datos Firestore
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    // Objeto local reactivo que contendrá los productos sincronizados
     const products = {};
+
+    function saveCategories() {
+      localStorage.setItem('inventoryCategories', JSON.stringify(categories));
+    }
 
     function generarPinesMixtos(cantidad) {
       let arrayPines = [];
@@ -951,210 +1096,323 @@
       return arrayPines;
     }
 
-    // Guardar o modificar en Firebase (Se ejecuta de forma asíncrona)
-    async function guardarCambiosProducto(id) {
-      const inputNombre = document.getElementById(`input-nombre-${id}`).value;
-      const nuevoPrecio = parseFloat(document.getElementById(`input-precio-${id}`).value);
-      const nuevoStock = parseInt(document.getElementById(`input-stock-${id}`).value) || 0;
+    function slugify(text) {
+      return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-')
+        .replace(/^-+/, '')
+        .replace(/-+$/, '');
+    }
+
+    // NUEVAS FUNCIONES PARA MANEJO DE IMAGEN DE CATEGORÍA
+    let currentCategoryImageBase64 = '';
+
+    function previewCategoryImage(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentCategoryImageBase64 = e.target.result;
+        const previewDiv = document.getElementById('categoryImagePreview');
+        const previewImg = document.getElementById('previewImg');
+        previewImg.src = currentCategoryImageBase64;
+        previewDiv.classList.add('show');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function removeCategoryImage() {
+      currentCategoryImageBase64 = '';
+      document.getElementById('newCategoryImage').value = '';
+      document.getElementById('categoryImagePreview').classList.remove('show');
+    }
+
+    function showNewCategoryInput() {
+      document.getElementById('newCategoryInput').classList.add('show');
+      document.getElementById('addCategory').value = 'new';
+      removeCategoryImage(); // Limpiar imagen al mostrar
+    }
+
+    function handleCategoryChange() {
+      const select = document.getElementById('addCategory');
+      const newCategoryInput = document.getElementById('newCategoryInput');
       
-      // Validaciones básicas antes de enviar a Firestore
-      if (isNaN(nuevoPrecio) || nuevoStock < 0) {
-        alert("Por favor ingresa valores numéricos válidos.");
+      if (select.value === 'new') {
+        newCategoryInput.classList.add('show');
+      } else {
+        newCategoryInput.classList.remove('show');
+      }
+    }
+
+    function addNewCategory() {
+      const nameInput = document.getElementById('newCategoryName');
+      const iconSelect = document.getElementById('newCategoryIcon');
+      const categoryName = nameInput.value.trim();
+      const categoryIcon = iconSelect.value;
+
+      if (!categoryName) {
+        alert('⚠️ Por favor ingresa un nombre para la nueva categoría');
         return;
       }
 
-      // Si el stock creció masivamente desde el valor anterior, generamos pines
-      let nuevosPines = products[id].pines || [];
-      if (nuevoStock >= 10000 && nuevoStock > products[id].stock) {
-        const diferencia = nuevoStock - products[id].stock;
-        nuevosPines = nuevosPines.concat(generarPinesMixtos(diferencia));
-        alert(`⚡ Se añadieron unidades masivas y se generaron pines nuevos de forma local.`);
-      }
-
-      try {
-        // Actualizamos el documento en la colección de Firestore
-        await setDoc(doc(db, "inventario", String(id)), {
-          name: inputNombre,
-          category: products[id].category,
-          price: nuevoPrecio,
-          unit: products[id].unit,
-          desc: products[id].desc || "",
-          img: products[id].img,
-          stock: nuevoStock,
-          section: products[id].section,
-          pines: nuevosPines
-        }, { merge: true });
-
-        alert(`✅ "${inputNombre}" actualizado exitosamente en la nube.`);
-      } catch (error) {
-        console.error("Error al guardar en Firestore:", error);
-        alert("Error de permisos o conexión al guardar cambios.");
-      }
-    }
-
-    // Agregar nueva fila/producto borrador directo en Firestore
-    async function addRow(sectionName) {
-      const nuevoId = Date.now(); // Usar Timestamp como ID único para evitar colisiones entre administradores
+      const categoryId = slugify(categoryName);
       
-      let category = '';
-      if (sectionName === 'cacao-criollo') category = '🍫 Cacao Criollo';
-      else if (sectionName === 'cacao-forastero') category = '🍫 Cacao Forastero';
-      else if (sectionName === 'cacao-trinitario') category = '🍫 Cacao Trinitario';
-      else if (sectionName === 'combos') category = '🎁 Combos';
-
-      try {
-        await setDoc(doc(db, "inventario", String(nuevoId)), {
-          name: "Nuevo Producto",
-          category: category,
-          price: 0.00,
-          unit: "kg",
-          desc: "",
-          img: "https://placehold.co/600x400/334155/ffffff?text=Sin+Imagen",
-          stock: 0,
-          section: sectionName,
-          pines: []
-        });
-      } catch (error) {
-        console.error("Error al agregar fila en Firestore:", error);
+      // Verificar si ya existe
+      if (categories.find(c => c.id === categoryId)) {
+        alert('⚠️ Ya existe una categoría con ese nombre');
+        return;
       }
-    }
 
-    // Eliminar producto de Firestore
-    async function eliminarProducto(id) {
-      const nombreProd = products[id].name;
-      if (confirm(`⚠️ ¿Estás seguro de que deseas eliminar "${nombreProd}" del catálogo?\nEsta acción afectará a todos los administradores en tiempo real.`)) {
-        try {
-          await deleteDoc(doc(db, "inventario", String(id)));
-          alert(`🗑️ "${nombreProd}" eliminado de la base de datos.`);
-        } catch (error) {
-          console.error("Error al eliminar documento:", error);
-        }
-      }
-    }
-
-    // Enviar nuevo producto desde el formulario Modal hacia Firestore
-    async function handleAddProduct(e) {
-      e.preventDefault();
-      const name = document.getElementById('addName').value;
-      const category = document.getElementById('addCategory').value;
-      const price = parseFloat(document.getElementById('addPrice').value);
-      const unit = document.getElementById('addUnit').value;
-      const desc = document.getElementById('addDesc').value;
-      const stock = parseInt(document.getElementById('addStock').value);
-      const fileInput = document.getElementById('addImageFile');
-
-      const nuevoId = Date.now();
-      
-      let section = '';
-      if (category.includes('Criollo')) section = 'cacao-criollo';
-      else if (category.includes('Forastero')) section = 'cacao-forastero';
-      else if (category.includes('Trinitario')) section = 'cacao-trinitario';
-      else if (category.includes('Combos')) section = 'combos';
-
-      const guardarEnNube = async (imagenFinal) => {
-        try {
-          await setDoc(doc(db, "inventario", String(nuevoId)), {
-            name: name,
-            category: category,
-            price: price,
-            unit: unit,
-            desc: desc,
-            img: imagenFinal,
-            stock: stock,
-            section: section,
-            pines: stock >= 10000 ? generarPinesMixtos(stock) : []
-          });
-
-          document.getElementById('addProductForm').reset();
-          closeAddProductModal();
-        } catch (error) {
-          console.error("Error al crear producto modal:", error);
-          alert("Hubo un error al guardar el producto.");
-        }
+      const newCategory = {
+        id: categoryId,
+        name: categoryIcon + ' ' + categoryName,
+        icon: categoryIcon,
+        desc: 'Categoría personalizada',
+        image: currentCategoryImageBase64 // Guardar la imagen
       };
 
-      if (fileInput && fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = async function(event) {
-          await guardarEnNube(event.target.result);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-      } else {
-        const icon = category.split(' ')[0];
-        const imgDefecto = `https://placehold.co/400x300/334155/ffffff?text=${icon}+${encodeURIComponent(name)}`;
-        await guardarEnNube(imgDefecto);
+      categories.push(newCategory);
+      saveCategories();
+      
+      // Crear la sección HTML
+      createCategorySection(newCategory);
+      
+      // Actualizar el select y la vista
+      updateCategorySelect();
+      renderCategoriesGrid();
+      renderExistingCategoriesList();
+      
+      alert(`✅ Categoría "${categoryName}" agregada exitosamente`);
+      
+      // Limpiar input
+      nameInput.value = '';
+      removeCategoryImage();
+      document.getElementById('newCategoryInput').classList.remove('show');
+      document.getElementById('addCategory').value = categoryId;
+    }
+
+    function getProductCount(categoryId) {
+      return Object.values(products).filter(p => p.section === categoryId).length;
+    }
+
+    function removeCategory(categoryId) {
+      const category = categories.find(c => c.id === categoryId);
+      if (!category) return;
+
+      // Verificar si hay productos en esta categoría
+      const productCount = getProductCount(categoryId);
+      
+      if (productCount > 0) {
+        alert(`⚠️ No se puede eliminar la categoría "${category.name}" porque tiene ${productCount} producto(s).\n\nElimina o mueve primero los productos a otra categoría.`);
+        return;
+      }
+
+      if (confirm(`🗑️ ¿Estás seguro de eliminar permanentemente la categoría "${category.name}"?\n\nEsta acción no se puede deshacer.`)) {
+        categories = categories.filter(c => c.id !== categoryId);
+        saveCategories();
+        
+        // Eliminar sección
+        const section = document.getElementById(categoryId + 'Section');
+        if (section) section.remove();
+        
+        updateCategorySelect();
+        renderCategoriesGrid();
+        renderExistingCategoriesList();
+        
+        alert(`✅ Categoría "${category.name}" eliminada exitosamente`);
       }
     }
 
-    // Renderizadores del Front-end optimizados
-    function renderCatalogBySection(sectionName, gridId) {
-      const grid = document.getElementById(gridId);
-      if (!grid) return;
-      grid.innerHTML = '';
+    function createCategorySection(category) {
+      const sectionsContainer = document.getElementById('dynamicSections');
+      
+      const sectionHTML = `
+        <div id="${category.id}Section" class="section content-area-bg">
+          <div class="category-header">
+            <button class="back-btn" onclick="showSection('home')">
+              ← Volver al Inicio
+            </button>
+            <h2 class="category-title">${category.icon} ${category.name.replace(category.icon, '').trim()}</h2>
+          </div>
+          <div class="container">
+            <div class="catalog-header">
+              <h2>${category.name}</h2>
+              <p>${category.desc}</p>
+            </div>
+            <div class="spreadsheet-container">
+              <div class="table-toolbar">
+                <div class="toolbar-group">
+                  <strong>📋 Inventario</strong>
+                  <span style="color: var(--text-secondary);">|</span>
+                  <span id="total-${category.id}" style="color: var(--primary);">0 productos</span>
+                </div>
+                <div class="toolbar-group">
+                  <button class="btn-add-row" onclick="addRow('${category.id}')">+ Agregar Fila</button>
+                  <button class="btn-add-column" onclick="addColumn('${category.id}')">+ Agregar Columna</button>
+                </div>
+              </div>
+              <table class="spreadsheet-table" id="table-${category.id}">
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Producto</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Unidad</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="grid-${category.id}"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      sectionsContainer.insertAdjacentHTML('beforeend', sectionHTML);
+    }
 
-      let count = 0;
-
-      Object.keys(products).forEach(id => {
-        const p = products[id];
-        if (p.section !== sectionName) return;
-        count++;
-
-        const badgeClass = p.stock > 5000 ? 'badge-masiva' : p.stock > 0 ? 'badge-fresco' : 'badge-agotado';
-        const badgeText = p.stock > 5000 ? 'Inyección Masiva' : p.stock > 0 ? 'Fresco' : 'Sin Stock';
-        const stockClass = p.stock > 0 ? 'stock-ok' : 'stock-low';
-        const stockText = p.stock > 0 ? `✅ ${p.stock} und.` : '❌ Agotado';
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td><img src="${p.img}" alt="${p.name}" class="product-img-small" onclick="alert('Producto: ${p.name}')"></td>
-          <td><input type="text" id="input-nombre-${id}" class="cell-editable" value="${p.name}" style="min-width: 150px;"></td>
-          <td>${p.category}</td>
-          <td><input type="number" id="input-precio-${id}" class="cell-editable" value="${p.price.toFixed(2)}" step="0.01" style="width: 80px;"></td>
-          <td>${p.unit}</td>
-          <td><input type="number" id="input-stock-${id}" class="cell-editable" value="${p.stock}" min="0" style="width: 80px;"></td>
-          <td><span class="badge-small ${badgeClass}">${badgeText}</span><br><span class="${stockClass}">${stockText}</span></td>
-          <td>
-            <button class="btn-action-small btn-save-small" onclick="guardarCambiosProducto(${id})">💾 Guardar</button>
-            <button class="btn-action-small btn-delete-small" onclick="eliminarProducto(${id})">🗑️</button>
-          </td>
-        `;
-        grid.appendChild(row);
+    function updateCategorySelect() {
+      const select = document.getElementById('addCategory');
+      const currentValue = select.value;
+      
+      select.innerHTML = '';
+      
+      categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.id;
+        option.textContent = cat.name;
+        select.appendChild(option);
       });
-
-      const countLabel = document.getElementById(`count-${sectionName}`);
-      const totalLabel = document.getElementById(`total-${sectionName}`);
-      if (countLabel) countLabel.textContent = `${count} producto${count !== 1 ? 's' : ''}`;
-      if (totalLabel) totalLabel.textContent = `${count} producto${count !== 1 ? 's' : ''}`;
+      
+      // Agregar opción "Nueva categoría"
+      const newOption = document.createElement('option');
+      newOption.value = 'new';
+      newOption.textContent = '➕ Agregar nueva categoría...';
+      select.appendChild(newOption);
+      
+      if (currentValue && categories.find(c => c.id === currentValue)) {
+        select.value = currentValue;
+      }
     }
 
-    function renderAllCatalogs() {
-      renderCatalogBySection('cacao-criollo', 'grid-cacao-criollo');
-      renderCatalogBySection('cacao-forastero', 'grid-cacao-forastero');
-      renderCatalogBySection('cacao-trinitario', 'grid-cacao-trinitario');
-      renderCatalogBySection('combos', 'grid-combos');
-    }
-
-    // --- ESCUCHADOR EN TIEMPO REAL INTEGRADO (ONSNAPSHOT) ---
-    onSnapshot(collection(db, "inventario"), (snapshot) => {
-        snapshot.docChanges().forEach((change) => {
-            const idDoc = change.doc.id;
-            const dataDoc = change.doc.data();
-
-            if (change.type === "added" || change.type === "modified") {
-                console.log(`Producto ${change.type}:`, dataDoc);
-                products[idDoc] = dataDoc; // Actualiza la estructura local en memoria
-            }
-            if (change.type === "removed") {
-                console.log("Producto eliminado remotamente:", idDoc);
-                delete products[idDoc]; // Remueve el elemento borrado por otro usuario
-            }
-        });
+    function renderCategoriesGrid() {
+      const grid = document.getElementById('categoriesGrid');
+      grid.innerHTML = '';
+      
+      categories.forEach(cat => {
+        const count = getProductCount(cat.id);
         
-        // Re-renderizar la interfaz cada vez que ocurre un cambio en la DB
-        renderAllCatalogs();
-    });
+        // Determinar la URL de la imagen - CORREGIDO
+        let imageUrl;
+        if (cat.image && cat.image.trim() !== '') {
+          imageUrl = cat.image;
+        } else {
+          // Usar solo el nombre sin el emoji para el placeholder
+          const cleanName = cat.name.replace(/^[^\s]+\s*/, ''); // Remover el emoji del inicio
+          imageUrl = `https://placehold.co/600x400/334155/ffffff?text=${encodeURIComponent(cleanName)}`;
+        }
+        
+        const card = document.createElement('div');
+        card.className = 'category-card';
+        card.onclick = () => showSection(cat.id);
+        card.innerHTML = `
+          <img src="${imageUrl}" alt="${cat.name}" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=${encodeURIComponent(cat.name)}'">
+          <div class="category-card-content">
+            <div class="category-icon">${cat.icon}</div>
+            <h3>${cat.name}</h3>
+            <p>${cat.desc}</p>
+            <span class="category-count" id="count-${cat.id}">${count} producto${count !== 1 ? 's' : ''}</span>
+          </div>
+        `;
+        
+        grid.appendChild(card);
+      });
+    }
 
-    // Funciones utilitarias de UI heredadas
+    function renderExistingCategoriesList() {
+      const container = document.getElementById('existingCategories');
+      container.innerHTML = '';
+      
+      if (categories.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-secondary); text-align: center; padding: 1rem;">No hay categorías registradas</p>';
+        return;
+      }
+      
+      categories.forEach(cat => {
+        const productCount = getProductCount(cat.id);
+        const canDelete = productCount === 0;
+        
+        // Miniatura de la categoría si tiene imagen
+        let thumbHtml;
+        if (cat.image && cat.image.trim() !== '') {
+          thumbHtml = `<img src="${cat.image}" alt="${cat.name}" class="category-item-thumb">`;
+        } else {
+          thumbHtml = `<span class="category-item-icon">${cat.icon}</span>`;
+        }
+        
+        const item = document.createElement('div');
+        item.className = 'category-item';
+        item.innerHTML = `
+          <div class="category-item-info">
+            ${thumbHtml}
+            <div class="category-item-details">
+              <div class="category-item-name">${cat.name.replace(cat.icon, '').trim()}</div>
+              <div class="category-item-count">${productCount} producto${productCount !== 1 ? 's' : ''}</div>
+            </div>
+          </div>
+          <div class="category-item-actions">
+            <button 
+              class="btn-delete-category ${canDelete ? '' : 'disabled'}" 
+              onclick="${canDelete ? `removeCategory('${cat.id}')` : ''}" 
+              title="${canDelete ? 'Eliminar categoría' : 'No se puede eliminar: tiene productos'}"
+              ${canDelete ? '' : 'disabled'}
+            >
+              🗑️ ${canDelete ? 'Eliminar' : 'Bloqueada'}
+            </button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    function addRow(sectionName) {
+      const nuevoId = Object.keys(products).length + 1;
+      
+      const category = categories.find(c => c.id === sectionName);
+      const categoryName = category ? category.name : sectionName;
+
+      products[nuevoId] = {
+        name: "Nuevo Producto",
+        category: categoryName,
+        price: 0.00,
+        unit: "kg",
+        desc: "",
+        img: "cacao.jfif",
+        stock: 0,
+        section: sectionName,
+        pines: []
+      };
+
+      alert(`✅ Nueva fila agregada. ID: ${nuevoId}\nEdita los campos directamente en la tabla y guarda los cambios.`);
+      renderAllCatalogs();
+      
+      setTimeout(() => {
+        const grid = document.getElementById(`grid-${sectionName}`);
+        if (grid && grid.lastElementChild) {
+          grid.lastElementChild.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          grid.lastElementChild.style.background = 'rgba(245, 158, 11, 0.3)';
+          setTimeout(() => {
+            grid.lastElementChild.style.background = '';
+          }, 2000);
+        }
+      }, 100);
+    }
+
     function addColumn(sectionName) {
       const columnName = prompt("Nombre de la nueva columna:");
       if (columnName) {
@@ -1176,10 +1434,175 @@
       }
     }
 
+    function guardarCambiosProducto(id) {
+      const nuevoPrecio = parseFloat(document.getElementById(`input-precio-${id}`).value);
+      const stockAnadir = parseInt(document.getElementById(`input-stock-${id}`).value) || 0;
+      const fileInput = document.getElementById(`input-file-${id}`);
+
+      if (!isNaN(nuevoPrecio)) products[id].price = nuevoPrecio;
+      
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          products[id].img = e.target.result;
+          procesarStockYRender(id, stockAnadir);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        procesarStockYRender(id, stockAnadir);
+      }
+    }
+
+    function procesarStockYRender(id, stockAnadir) {
+      if (stockAnadir > 0) {
+        products[id].stock += stockAnadir;
+        if (stockAnadir >= 10000) {
+          products[id].pines = products[id].pines.concat(generarPinesMixtos(stockAnadir));
+          alert(`⚡ ¡Impresionante! Se añadieron ${stockAnadir} unidades a ${products[id].name} y se generaron sus ${stockAnadir} pines únicos.`);
+        } else {
+          alert(`✅ Inventario actualizado para ${products[id].name}. +${stockAnadir} unidades.`);
+        }
+      } else {
+        alert(`✅ Datos de ${products[id].name} actualizados correctamente.`);
+      }
+      renderAllCatalogs();
+    }
+
+    function eliminarProducto(id) {
+      const nombreProd = products[id].name;
+      if (confirm(`⚠️ ¿Estás seguro de que deseas eliminar "${nombreProd}" del catálogo?\nEsta acción no se puede deshacer.`)) {
+        delete products[id];
+        alert(`🗑️ "${nombreProd}" ha sido eliminado exitosamente.`);
+        renderAllCatalogs();
+      }
+    }
+
+    function openAddProductModal() {
+      updateCategorySelect();
+      renderExistingCategoriesList();
+      document.getElementById('addProductModal').classList.add('open');
+    }
+    
+    function closeAddProductModal() {
+      document.getElementById('addProductModal').classList.remove('open');
+      document.getElementById('newCategoryInput').classList.remove('show');
+      document.getElementById('addProductForm').reset();
+      removeCategoryImage();
+    }
+    
+    function handleAddProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('addName').value;
+      const categoryId = document.getElementById('addCategory').value;
+      const price = parseFloat(document.getElementById('addPrice').value);
+      const unit = document.getElementById('addUnit').value;
+      const desc = document.getElementById('addDesc').value;
+      const stock = parseInt(document.getElementById('addStock').value);
+      const fileInput = document.getElementById('addImageFile');
+
+      if (categoryId === 'new') {
+        alert('⚠️ Por favor agrega la nueva categoría primero o selecciona una existente');
+        return;
+      }
+
+      const category = categories.find(c => c.id === categoryId);
+      const categoryName = category ? category.name : categoryId;
+
+      const nuevoId = Object.keys(products).length + 1;
+      
+      const crearProducto = (imagenFinal) => {
+        products[nuevoId] = {
+          name: name,
+          category: categoryName,
+          price: price,
+          unit: unit,
+          desc: desc,
+          img: imagenFinal,
+          stock: stock,
+          section: categoryId,
+          pines: stock >= 10000 ? generarPinesMixtos(stock) : []
+        };
+
+        if (stock >= 10000) {
+          alert(`✅ ¡Producto creado exitosamente!\n"${name}" con ${stock} unidades.\nSe generaron ${stock} pines únicos.`);
+        } else {
+          alert(`✅ ¡Producto creado exitosamente!\n"${name}" con ${stock} unidades en stock.`);
+        }
+        
+        document.getElementById('addProductForm').reset();
+        closeAddProductModal();
+        renderAllCatalogs();
+        renderCategoriesGrid();
+      };
+
+      if (fileInput && fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          crearProducto(event.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        const icon = category ? category.icon : '📦';
+        const imgDefecto = `https://placehold.co/400x300/334155/ffffff?text=${icon}+${encodeURIComponent(name)}`;
+        crearProducto(imgDefecto);
+      }
+    }
+
+    function renderCatalogBySection(sectionName, gridId) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      let count = 0;
+
+      Object.keys(products).forEach(id => {
+        const p = products[id];
+        if (p.section !== sectionName) return;
+        count++;
+
+        const esAgotado = p.stock <= 0;
+        const badgeClass = p.stock > 5000 ? 'badge-masiva' : p.stock > 0 ? 'badge-fresco' : 'badge-agotado';
+        const badgeText = p.stock > 5000 ? 'Inyección Masiva' : p.stock > 0 ? 'Fresco' : 'Sin Stock';
+        const stockClass = p.stock > 0 ? 'stock-ok' : 'stock-low';
+        const stockText = p.stock > 0 ? `✅ ${p.stock} und.` : '❌ Agotado';
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><img src="${p.img}" alt="${p.name}" class="product-img-small" onclick="alert('Producto: ${p.name}')"></td>
+          <td><input type="text" class="cell-editable" value="${p.name}" style="min-width: 150px;"></td>
+          <td>${p.category}</td>
+          <td><input type="number" id="input-precio-${id}" class="cell-editable" value="${p.price.toFixed(2)}" step="0.01" style="width: 80px;"></td>
+          <td>${p.unit}</td>
+          <td><input type="number" id="input-stock-${id}" class="cell-editable" value="${p.stock}" min="0" style="width: 80px;"></td>
+          <td><span class="badge-small ${badgeClass}">${badgeText}</span><br><span class="${stockClass}">${stockText}</span></td>
+          <td>
+            <button class="btn-action-small btn-save-small" onclick="guardarCambiosProducto(${id})">💾 Guardar</button>
+            <button class="btn-action-small btn-delete-small" onclick="eliminarProducto(${id})">🗑️</button>
+          </td>
+        `;
+        grid.appendChild(row);
+      });
+
+      const category = categories.find(c => c.id === sectionName);
+      const countLabel = document.getElementById(`count-${sectionName}`);
+      const totalLabel = document.getElementById(`total-${sectionName}`);
+      const countText = `${count} producto${count !== 1 ? 's' : ''}`;
+      
+      if (countLabel) countLabel.textContent = countText;
+      if (totalLabel) totalLabel.textContent = countText;
+    }
+
+    function renderAllCatalogs() {
+      categories.forEach(cat => {
+        renderCatalogBySection(cat.id, `grid-${cat.id}`);
+      });
+    }
+
     function showSection(sectionName) {
       document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
       });
+      
       const targetSection = document.getElementById(sectionName + 'Section');
       if (targetSection) {
         targetSection.classList.add('active');
@@ -1191,48 +1614,44 @@
       const html = document.documentElement;
       const currentTheme = html.getAttribute('data-theme');
       const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      
       html.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
     }
 
-    function openAddProductModal() {
-      document.getElementById('addProductModal').classList.add('open');
-    }
-    
-    function closeAddProductModal() {
-      document.getElementById('addProductModal').classList.remove('open');
-    }
-
-    // --- TRUCO CLAVE: EXPONER LAS FUNCIONES A WINDOW ---
-    // Como las etiquetas HTML llaman a onclick="addRow()", necesitan encontrarlas de manera global.
-    window.showSection = showSection;
-    window.toggleTheme = toggleTheme;
-    window.openAddProductModal = openAddProductModal;
-    window.closeAddProductModal = closeAddProductModal;
-    window.addRow = addRow;
-    window.addColumn = addColumn;
-    window.guardarCambiosProducto = guardarCambiosProducto;
-    window.eliminarProducto = eliminarProducto;
-    window.handleAddProduct = handleAddProduct;
-
-    // Ejecuciones de ciclo de vida iniciales
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    })();
 
     document.getElementById('addProductModal').addEventListener('click', (e) => {
       if (e.target.id === 'addProductModal') closeAddProductModal();
     });
 
-    const cards = document.querySelectorAll('.category-card');
-    cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        card.style.transition = 'all 0.5s ease';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-      }, index * 100);
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Crear secciones para todas las categorías
+      const sectionsContainer = document.getElementById('dynamicSections');
+      categories.forEach(cat => {
+        createCategorySection(cat);
+      });
+      
+      // Inicializar
+      updateCategorySelect();
+      renderCategoriesGrid();
+      renderAllCatalogs();
+
+      const cards = document.querySelectorAll('.category-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+          card.style.transition = 'all 0.5s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, index * 100);
+      });
     });
   </script>
 </body>
